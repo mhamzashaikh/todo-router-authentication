@@ -1,10 +1,11 @@
 import "./Form.css";
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import { useContext, useState } from "react";
 import AuthContext from "../AuthContext";
 function Signup(){
     
-    const {user, setUser} = useContext(AuthContext);
+    const auth= useContext(AuthContext);
+    const navigate = useNavigate();
     
     const [userData, setUserInput] = useState({});
     console.log(userData);
@@ -20,13 +21,13 @@ function Signup(){
 
     function submit(){
         // localStorage.setItem("userData", JSON.stringify(userData));
-        setUser(userData.email);
-        console.log('====================================');
-        console.log(user);
-        console.log('====================================');
+
+        localStorage.setItem("user", JSON.stringify(userData));
 
 
         alert("submit");
+
+        navigate("/login");
     }
 
     return(
