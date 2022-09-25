@@ -1,24 +1,58 @@
 import logo from './logo.svg';
-import './App.css';
+// import './App.css';
+import Home from './components/Home';
+import Login from './components/Login';
+import Signup from './components/Signup';
+import AddTodo from './components/AddTodo';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import AuthContext from './AuthContext';
+import ProtectedWrapper from './ProtectedWrapper';
+import { useState } from 'react';
+
 
 function App() {
+
+  let[user, setUser] = useState(null);
+
+  function signin() {
+
+  }
+
+  function signout() {
+
+  }
+
+
+
+  let value = { user, setUser };
+
+  console.log("user is:", user);
+
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthContext.Provider value={value} >
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={
+            <ProtectedWrapper name="hello">
+              <Home />
+            </ProtectedWrapper>
+          } />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/addtodo" element={
+            <ProtectedWrapper name="hello">
+              <AddTodo />
+            </ProtectedWrapper>} />
+        </Routes>
+      </BrowserRouter>
+    </AuthContext.Provider>
+
+
+
   );
 }
 
