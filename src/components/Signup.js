@@ -1,10 +1,10 @@
 import "./Form.css";
 import {Link, useNavigate} from 'react-router-dom';
-import { useContext, useState } from "react";
-import AuthContext from "../AuthContext";
+import { useState } from "react";
+
 function Signup(){
     
-    const auth= useContext(AuthContext);
+  
     const navigate = useNavigate();
     
     const [userData, setUserInput] = useState({});

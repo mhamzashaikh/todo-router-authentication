@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import './List.css';
+import './TodoList.css';
 
 
-function List(props) {
+function List() {
     const localStorageTodo = JSON.parse(localStorage.getItem("TodoList"));
 
     const [todolist, setTodoList] = useState(localStorageTodo !== null ? localStorageTodo : []);
@@ -63,51 +64,59 @@ function List(props) {
             {/* List component having edit and delete button */}
 
 
+            <div className="container">
+                <div className="subContainer">
+                    <div className="childContainer">
 
 
-            <div className="myList" >
-                {todolist.map((element, index) => {
+                        <div className="myList" >
+                            {todolist.map((element, index) => {
 
-                    return (
-                        <li key={index}>
-                            {
-                                editTodoIndex === index ?
-                                    (<input className='input-enable'
-                                        value={element}
-                                        onChange={(e) => {
-                                            onUpdate(index, e.target.value);
-                                        }}
-                                    />
-                                    )
-                                    : (
-                                        <input className='input-disable' value={element} readOnly />
-                                    )
-                            }
+                                return (
+                                    <li key={index}>
+                                        {
+                                            editTodoIndex === index ?
+                                                (<input className='input-enable'
+                                                    value={element}
+                                                    onChange={(e) => {
+                                                        onUpdate(index, e.target.value);
+                                                    }}
+                                                />
+                                                )
+                                                : (
+                                                    <input className='input-disable' value={element} readOnly />
+                                                )
+                                        }
 
-                            <div className="myIcons">
+                                        <div className="myIcons">
 
-                                {/* Updating icon  */}
-                                <button className="myButtons updateIcon" onClick={() => {
-                                    if (editTodoIndex === index) {
-                                        setEditTodoIndex(null);
-                                    }
-                                    else {
-                                        onEdit(index);
+                                            {/* Updating icon  */}
+                                            <button className="myButtons updateIcon" onClick={() => {
+                                                if (editTodoIndex === index) {
+                                                    setEditTodoIndex(null);
+                                                }
+                                                else {
+                                                    onEdit(index);
 
-                                    }
+                                                }
 
-                                }}>
-                                    {editTodoIndex === index ? "Update" : "Edit"}
-                                </button>
+                                            }}>
+                                                {editTodoIndex === index ? "Update" : "Edit"}
+                                            </button>
 
-                                {/* Deleting ion */}
-                                <button className="myButtons deleteIcon" onClick={() => { deleteItem(index) }}>
-                                    delete
-                                </button>
-                            </div>
-                        </li>
-                    );
-                })}
+                                            {/* Deleting ion */}
+                                            <button className="myButtons deleteIcon" onClick={() => { deleteItem(index) }}>
+                                                delete
+                                            </button>
+                                        </div>
+                                    </li>
+                                );
+                            })}
+                        </div>
+
+
+                    </div>
+                </div>
             </div>
 
 

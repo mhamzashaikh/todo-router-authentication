@@ -1,10 +1,10 @@
-import logo from './logo.svg';
+
 // import './App.css';
 import Home from './components/Home';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import { fakeAuthProvider } from './Auth';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import AuthContext from './AuthContext';
 import ProtectedWrapper from './ProtectedWrapper';

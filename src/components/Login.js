@@ -23,7 +23,7 @@ function Login() {
             <button id="loginBtn" onClick={() => {
                 let usersExist = JSON.parse(localStorage.getItem("user"));
                 console.log("exist user: ", usersExist.email);
-                if (usersExist.email == loginUserData.email && usersExist.password == loginUserData.password) {
+                if (usersExist.email === loginUserData.email && usersExist.password === loginUserData.password) {
                     auth.signin(
                         {
                             email: loginUserData.email,
